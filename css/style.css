@@ -1,0 +1,34 @@
+/* .toggle {
+    display: block;
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+@media screen and (min-width: 1056px) {
+    .toggle {
+        display: none;
+    }
+}
+
+#open {
+    display: block;
+}
+
+#close {
+    display: none;
+}
+
+.open #open {
+    display: none;
+}
+
+.open #close {
+    display: block;
+}
+
+.open .menu {
+    transform: translate(0);
+} */
+
+
+.navbar_ttl []
