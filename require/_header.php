@@ -8,14 +8,12 @@
             </article>
 
             <ul class="menu">
-                <li class="menu_items">MENU 1</li>
-                <li class="menu_items">MENU 2</li>
-                <li class="menu_items">MENU 3</li>
-                <li class="menu_items">MENU 4</li>
-                <li class="menu_items">MENU 5</li>
+                <li class="menu_items"><a href="todo.php">A FAIRE</a></li>
+                <li class="menu_items"><a href="ongoing.php">EN COURS</a></li>
+                <li class="menu_items"><a href="done.php">TERMINER</a></li>
             </ul>
 
-            <h1 class="navbar_ttl">A FAIRE</h1>
+            <h1 class="navbar_ttl"><?=$title?></h1>
 
         </section>
     </nav>

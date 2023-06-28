@@ -62,6 +62,7 @@
     border: 2px solid black;
     border-top: none;
     padding: 1rem;
+    background-color: white;
 }
 
 .navbar_ttl {
@@ -69,6 +70,25 @@
     color: rgb(0, 0, 0);
     padding: 1rem;
     margin: 0 auto 0 auto;
+}
+
+.task_container {
+    border : 2px solid black;
+    padding: .5rem;
+    margin: .5rem;
+}
+.task_ttl {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: black;
+    text-align: center;
+}
+
+.task_list {
+    font-size: 1rem;
+    color: black;
+    list-style: none;
+    text-align: center;
 }
 
 
