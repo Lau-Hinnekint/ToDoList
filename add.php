@@ -1,9 +1,13 @@
 <?php
-require 'includes/_bdd.php';
-$query = $dbCo->prepare(" INSERT TO 'task'('task_description', 'task_name', 'task_creation_date')
-                            VALUES ( ,  ,  )");
+require 'require/_bdd.php';
+
+$query = $dbCo->prepare("INSERT INTO task (task_description, task_order) VALUES (:description, 1)");
+
 $isOk = $query->execute([
-    'task'
+    'description' => (strip_tags($_POST['description'])),
 ]);
+
+header('location: todo.php?msg=' . ($isOk ? "Ok" : "NotOk"));
+exit;
 
 ?>
