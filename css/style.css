@@ -1,7 +1,24 @@
-/* .toggle {
+@import url("reset.css");
+@import url("root.css");
+@import url("variables.css");
+
+
+.navbar_container {
+    border: 2px black solid;
+    height: 6rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.toggle {
     display: block;
     cursor: pointer;
     font-size: 3rem;
+    margin: 0 1rem 0 0;
+    padding: 1rem;
 }
 
 @media screen and (min-width: 1056px) {
@@ -28,7 +45,30 @@
 
 .open .menu {
     transform: translate(0);
-} */
+}
+.menu {
+    position: absolute;
+    width: 100%;
+    top: 6rem;
+    left: 0;
+    transform: translate(0, -200%);
+    transition: transform 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.menu_items {
+    border: 2px solid black;
+    border-top: none;
+    padding: 1rem;
+}
+
+.navbar_ttl {
+    font-size: 3rem;
+    color: rgb(0, 0, 0);
+    padding: 1rem;
+    margin: 0 auto 0 auto;
+}
 
 
-.navbar_ttl []
