@@ -24,12 +24,13 @@ require 'require/_bdd.php';
 
 <?php
 
-    $query = $dbCo->prepare("SELECT task_name, task_creation_date, task_description, status_name
+    $query = $dbCo->prepare("SELECT task_creation_date, task_description
                             FROM task t
                                 JOIN status s USING (ID_status)
-                            ORDER BY task_creation_date desc");
+                            ORDER BY task_creation_date DESC");
     $query->execute();
     $result = $query->fetchAll() ;
+    var_dump($result);
 
 echo '<ul class="task">';
 
@@ -37,7 +38,7 @@ foreach ($result as $task) {
     echo '<div class="task_container">';
     // echo '<p class ="task_ttl">' . $task['task_name'] . '</p>';
     echo '<li class="task_list">'. $task['task_description'] .'</li>';
-    echo '<li class="task_list">'. $task['status_name'] .'</li>';
+    // echo '<li class="task_list">'. $task['status_name'] .'</li>';
     echo '</div>';
 }
 
