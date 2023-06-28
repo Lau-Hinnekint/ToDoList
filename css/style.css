@@ -3,17 +3,7 @@
 @import url("variables.css");
 
 
-.navbar_container {
-    border: 2px black solid;
-    height: 6rem;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.toggle {
+/* .toggle {
     display: block;
     cursor: pointer;
     font-size: 3rem;
@@ -63,56 +53,105 @@
     border-top: none;
     padding: 1rem;
     background-color: white;
+} */
+
+html {
+    background-color: var(--secondary);
+}
+
+/* #################### HEADER #################### */
+
+.navbar_container {
+    height: 6rem;
+    width: 100%;
+    background-color: var(--primary);
 }
 
 .navbar_ttl {
-    font-size: 3rem;
-    color: rgb(0, 0, 0);
+    position: absolute;
+    max-height: 3rem;
+    top: .5rem;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    color: var(--white);
+    font-size: 2rem;
+}
+
+/* #################### FORMULAIRE #################### */
+
+.form_container {
+    position: absolute;
+    top: 3rem;
+    width: calc(100% - 1.4rem);
+    border-radius: 1rem;
+    border: .1px solid var(--black-trans);
+    box-shadow: 5px 5px 5px var(--black-trans);
+    background-color: var(--white);
     padding: 1rem;
-    margin: 0 auto 0 auto;
+    margin: 0 0 0 .6rem;
+}
+
+.form_title{
+    text-align: center;
+    margin: 0 auto .5rem auto;
+    font-size: 1rem;
+}
+
+.input_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    justify-items: center;
+    align-items: center;
+}
+
+.input_field {
+    width: calc(100% - .5rem);
+    font-size: 1rem;
+}
+
+.input_submit {
+    cursor: pointer;
+    width: 25%;
+    justify-self: center;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--primary);
+    border: .1px solid var(--black-trans);
+    border-radius: .25rem;
+    box-shadow: 0 0 8px 2px var(--black-trans);
+}
+
+/* #################### LISTE DES TACHES #################### */
+
+.task {
+    margin: 5rem auto 0 auto;
 }
 
 .task_container {
-    border : 2px solid black;
-    padding: .5rem;
-    margin: .5rem;
+    border-radius: 1rem;
+    border: .1px solid var(--black-trans);
+    box-shadow: 5px 5px 5px var(--black-trans);
+    width: calc(100% - 1.3rem);
+    margin: 1rem .5rem 1rem .5rem;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
-.task_ttl {
+
+/* .task_ttl {
     font-size: 1.5rem;
     font-weight: 700;
-    color: black;
+    color: var(--white);
     text-align: center;
-}
+} */
 
 .task_list {
     font-size: 1rem;
     color: black;
     list-style: none;
     text-align: center;
+    margin: 1rem;
 }
-
-footer {
-    position: sticky ;
-    bottom: 0;
-}
-
-.form {
-border: 2px solid black;
-padding: .5rem;
-margin: .5rem;
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-}
-
-.form_input {
-    width:100%;
-    margin :.5rem;
-}
-
-.form_submit {
-    cursor: pointer;
-}
-
-

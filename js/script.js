@@ -1,10 +1,10 @@
 // # BURGER MENU #
 
 
-const action = document.querySelector('.toggle');
-const nav = document.querySelector('nav');
+// const action = document.querySelector('.toggle');
+// const nav = document.querySelector('nav');
 
 
-action.addEventListener('click', function () {
-    nav.classList.toggle('open');
-});
+// action.addEventListener('click', function () {
+//     nav.classList.toggle('open');
+// });
