@@ -22,10 +22,6 @@ require 'require/_bdd.php';
         ?>
     </form>
 
-    <section class="popup">
-
-    </section>
-
 <?php
 
     $query = $dbCo->prepare("SELECT task_creation_date, task_description, status_name
