@@ -59,6 +59,13 @@ html {
     background-color: var(--secondary);
 }
 
+.text {
+    font-size: 1rem;
+    color: var(--black);
+    text-align: center;
+    margin: .5rem 0 0 0;
+}
+
 /* #################### HEADER #################### */
 
 .navbar_container {
@@ -123,10 +130,67 @@ html {
     box-shadow: 0 0 8px 2px var(--black-trans);
 }
 
+/* #################### POPIN #################### */
+
+.popin_Success_Add {
+    position: absolute;
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popin_Success_Add_box {
+    border: 2px solid black;
+    box-shadow: 0 0 1rem 255rem var(--black-trans);
+    width: 100%;
+    background-color: var(--white);
+    padding: 1rem;
+
+}
+
+.popin_Success_Add_text {
+    text-align:center;
+    font-size: 1rem;
+    margin: .25rem;
+}
+
+.popin_Fail_Add {
+    position: absolute;
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popin_Fail_Add_box {
+    border: 2px solid black;
+    box-shadow: 0 0 1rem 255rem var(--black-trans);
+    width: 100%;
+    background-color: var(--white);
+    padding: 1rem;
+
+}
+
+.popin_Fail_Add_text {
+    text-align:center;
+    font-size: 1rem;
+    margin: .25rem;
+}
+
+.closePopInAdd {
+    position: absolute;
+    top: 0; 
+    right: 0;
+    margin: .25rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 /* #################### LISTE DES TACHES #################### */
 
 .task {
-    margin: 5rem auto 0 auto;
+    margin: 6rem auto 0 auto;
 }
 
 .task_container {
