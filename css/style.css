@@ -130,7 +130,7 @@ html {
 }
 
 .task_container {
-    border-radius: 1rem;
+    border-radius: .5rem;
     border: .1px solid var(--black-trans);
     box-shadow: 5px 5px 5px var(--black-trans);
     width: calc(100% - 1.3rem);
@@ -139,6 +139,7 @@ html {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center ;
 }
 
 /* .task_ttl {
@@ -153,5 +154,26 @@ html {
     color: black;
     list-style: none;
     text-align: center;
-    margin: 1rem;
+    margin: .5rem;
+}
+
+.task_btn {
+    width: 5rem;
+    color: var(--white);    
+    border: none;
+    border-radius: .25rem;
+    background-color: var(--secondary-trans);
+    box-shadow: 0 0 5px 1px var(--black-trans);
+}
+
+.task_box {
+    margin: 0 .5rem 0 .5rem;
+    box-shadow: 0 0 5px 1px var(--black-trans);    
+}
+
+.task_box:checked {
+    margin: 0 .5rem 0 .5rem;
+    color: var(--secondary-trans);
+    box-shadow: 0 0 5px 1px var(--black-trans);
+    background-color: var(--secondary-trans);
 }

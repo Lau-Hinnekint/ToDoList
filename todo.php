@@ -16,15 +16,19 @@ require 'require/_bdd.php';
         <input class="input_submit" type="submit" name="submit">
         </div>
         <?php
-            if (array_key_exists('msg', $_GET)) {
+            if (array_key_exists('msgAdd', $_GET)) {
                 echo '<p>'. $_GET['msg'] . '</p>';
             }
         ?>
     </form>
 
+    <section class="popup">
+
+    </section>
+
 <?php
 
-    $query = $dbCo->prepare("SELECT task_creation_date, task_description
+    $query = $dbCo->prepare("SELECT task_creation_date, task_description, status_name
                             FROM task t
                                 JOIN status s USING (ID_status)
                             ORDER BY task_creation_date DESC");
@@ -39,8 +43,9 @@ echo '<ul class="task">';
 foreach ($result as $task) {
     echo '<div class="task_container">';
     // echo '<p class ="task_ttl">' . $task['task_name'] . '</p>';
+    echo '<li class="task_box"><input type="checkbox" id="checkBoxDelete"></li>';
     echo '<li class="task_list">'. $task['task_description'] .'</li>';
-    // echo '<li class="task_list">'. $task['status_name'] .'</li>';
+    echo '<li class="task_list"><button class="task_btn">'. $task['status_name'] .'</button></li>';
     echo '</div>';
 }
 
