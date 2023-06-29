@@ -30,7 +30,9 @@ require 'require/_bdd.php';
                             ORDER BY task_creation_date DESC");
     $query->execute();
     $result = $query->fetchAll() ;
-    var_dump($result);
+    // var_dump($result);
+
+
 
 echo '<ul class="task">';
 
