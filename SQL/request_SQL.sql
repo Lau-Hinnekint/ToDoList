@@ -2,13 +2,13 @@ CREATE DATABASE IF NOT EXISTS 2DO;
 USE 2DO;
 
 CREATE TABLE status(
-   ID_status INT,
+   ID_status INT NOT NULL AUTO_INCREMENT,
    status_name VARCHAR(50) NOT NULL,
    PRIMARY KEY(ID_status)
 );
 
 CREATE TABLE task(
-   ID_task INT,
+   ID_task INT NOT NULL AUTO_INCREMENT,
    task_name VARCHAR(50) NOT NULL,
    task_creation_date DATETIME NOT NULL,
    task_description VARCHAR(255),
