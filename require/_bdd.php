@@ -1,10 +1,15 @@
 <?php
 
+require 'vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
 try {
     $dbCo = new PDO(
-    'mysql:host=localhost;dbname=2do;charset=utf8',
-    'User1',
-    '123'
+        $_ENV['DATABASE_DNS'],
+        $_ENV['DATABASE_USER'],
+        $_ENV['DATABASE_PASSWORD']
     );
 
     $dbCo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

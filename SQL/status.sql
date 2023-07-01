@@ -4,6 +4,7 @@ INSERT INTO status (status_name) VALUES ('A FAIRE');
 INSERT INTO status (status_name) VALUES ('EN COURS');
 INSERT INTO status (status_name) VALUES ('TERMINER');
 
+UPDATE `task` SET `ID_status` = '2' WHERE `task`.`ID_task` = 1 ;
 UPDATE `task` SET `ID_status` = '3' WHERE `task`.`ID_task` = 2 ;
 UPDATE `task` SET `ID_status` = '1' WHERE `task`.`ID_task` = 3 ;
 UPDATE `task` SET `ID_status` = '2' WHERE `task`.`ID_task` = 4 ;

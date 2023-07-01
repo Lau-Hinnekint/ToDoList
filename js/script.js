@@ -9,6 +9,11 @@
 //     nav.classList.toggle('open');
 // });
 
+
+
+
+// #################### FERMETURE POP IN #########################
+
 const closePopInAdd = document.querySelector('.closePopInAdd');
 const popin_Success_Add  = document.querySelector('.popin_Success_Add');
 
@@ -24,3 +29,6 @@ const popin_Fail_Add  = document.querySelector('.popin_Fail_Add');
 closePopInAdd.addEventListener('click', function() {
     popin_Fail_Add.style.opacity = '0';
 });
+
+// #################################################################
+

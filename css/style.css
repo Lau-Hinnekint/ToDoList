@@ -142,6 +142,7 @@ html {
 
 .popin_Success_Add_box {
     border: 2px solid black;
+    border-radius: 1rem;
     box-shadow: 0 0 1rem 255rem var(--black-trans);
     width: 100%;
     background-color: var(--white);
@@ -165,6 +166,7 @@ html {
 
 .popin_Fail_Add_box {
     border: 2px solid black;
+    border-radius: 1rem;
     box-shadow: 0 0 1rem 255rem var(--black-trans);
     width: 100%;
     background-color: var(--white);
@@ -198,7 +200,7 @@ html {
     border: .1px solid var(--black-trans);
     box-shadow: 5px 5px 5px var(--black-trans);
     width: calc(100% - 1.3rem);
-    margin: 1rem .5rem 1rem .5rem;
+    margin: 1rem .5rem 0 .5rem;
     background-color: var(--white);
     display: flex;
     flex-direction: row;
@@ -221,9 +223,10 @@ html {
     margin: .5rem;
 }
 
-.task_btn {
-    width: 5rem;
-    color: var(--white);    
+.task_lnk {
+    font-size: 1rem;
+    color: var(--white);  
+    width: 8;      
     border: none;
     border-radius: .25rem;
     background-color: var(--secondary-trans);
@@ -240,4 +243,27 @@ html {
     color: var(--secondary-trans);
     box-shadow: 0 0 5px 1px var(--black-trans);
     background-color: var(--secondary-trans);
+}
+
+
+/* ######################### MODIFICATION ######################### */
+
+
+.button_container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background-color: var(--white);   
+    width: 4rem; 
+    top: 0;
+    left: .5rem;
+    box-shadow: 0 0 5px 1px var(--black-trans);
+}
+
+.modify_button {
+    font-size: 2rem;<
+}
+
+.trash_button {
+    font-size: 2rem;
 }
