@@ -2,59 +2,6 @@
 @import url("root.css");
 @import url("variables.css");
 
-
-/* .toggle {
-    display: block;
-    cursor: pointer;
-    font-size: 3rem;
-    margin: 0 1rem 0 0;
-    padding: 1rem;
-}
-
-@media screen and (min-width: 1056px) {
-    .toggle {
-        display: none;
-    }
-}
-
-#open {
-    display: block;
-}
-
-#close {
-    display: none;
-}
-
-.open #open {
-    display: none;
-}
-
-.open #close {
-    display: block;
-}
-
-.open .menu {
-    transform: translate(0);
-}
-.menu {
-    position: absolute;
-    width: 100%;
-    top: 6rem;
-    left: 0;
-    transform: translate(0, -200%);
-    transition: transform 0.5s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.menu_items {
-    border: 2px solid black;
-    border-top: none;
-    padding: 1rem;
-    background-color: white;
-} */
-
 html {
     background-color: var(--secondary);
 }
@@ -65,6 +12,7 @@ html {
     text-align: center;
     margin: .5rem 0 0 0;
 }
+
 
 /* #################### HEADER #################### */
 
@@ -84,27 +32,34 @@ html {
     font-size: 2rem;
 }
 
+
 /* #################### FORMULAIRE #################### */
 
 .form_container {
-    position: absolute;
-    top: 3rem;
-    width: calc(100% - 1.4rem);
+    position: relative;
+    top: -3rem;
     border-radius: 1rem;
     border: .1px solid var(--black-trans);
     box-shadow: 5px 5px 5px var(--black-trans);
     background-color: var(--white);
     padding: 1rem;
-    margin: 0 0 0 .6rem;
+    margin: 0 1rem 0 1rem;
 }
 
-.form_title{
+@media screen and (min-width :768px) {
+    .form_container {
+        max-width: 44rem;
+        margin: auto;
+    }
+}
+
+.form_title {
     text-align: center;
     margin: 0 auto .5rem auto;
     font-size: 1rem;
 }
 
-.input_container{
+.input_container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -130,6 +85,7 @@ html {
     box-shadow: 0 0 8px 2px var(--black-trans);
 }
 
+
 /* #################### POPIN #################### */
 
 .popin_Success_Add {
@@ -151,7 +107,7 @@ html {
 }
 
 .popin_Success_Add_text {
-    text-align:center;
+    text-align: center;
     font-size: 1rem;
     margin: .25rem;
 }
@@ -175,37 +131,81 @@ html {
 }
 
 .popin_Fail_Add_text {
-    text-align:center;
+    text-align: center;
     font-size: 1rem;
     margin: .25rem;
 }
 
-.closePopInAdd {
+.closePopIn {
     position: absolute;
-    top: 0; 
-    right: 0;
+    top: -.5rem;
+    right: .5rem;
     margin: .25rem;
-    font-size: 1rem;
+    font-size: 2rem;
     cursor: pointer;
 }
 
-/* #################### LISTE DES TACHES #################### */
+
+/* ############################## SCROLL MENU ORDER BY ############################## */
+
+.orderby_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.orderBySelect {
+    margin-left: 1rem;
+    border-radius: .5rem;
+    background-color: var(--white);
+    box-shadow: 0 0 5px 1px var(--black-trans);
+}
+
+.orderby_ttl {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-left: 1rem;
+}
+
+.orderby_submit {
+    cursor: pointer;
+    width: 10%;
+    margin-left: 1rem;
+    justify-self: center;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--primary);
+    border: .1px solid var(--black-trans);
+    border-radius: .25rem;
+    box-shadow: 0 0 8px 2px var(--black-trans);
+}
+
+
+/* ################################### TASK LIST ################################### */
 
 .task {
-    margin: 6rem auto 0 auto;
+    margin: 0rem auto 0 auto;
 }
 
 .task_container {
+    position: relative;
     border-radius: .5rem;
     border: .1px solid var(--black-trans);
     box-shadow: 5px 5px 5px var(--black-trans);
-    width: calc(100% - 1.3rem);
-    margin: 1rem .5rem 0 .5rem;
+    margin: 1rem;
     background-color: var(--white);
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    gap: .5rem;
+    grid-template-columns: 1.25fr 0.75fr;
     justify-content: space-between;
-    align-items: center ;
+    align-items: center;
+}
+
+@media screen and (min-width :768px) {
+    .task_container {
+        max-width: 44rem;
+        margin: 1rem auto;
+    }
 }
 
 /* .task_ttl {
@@ -217,23 +217,33 @@ html {
 
 .task_list {
     font-size: 1rem;
-    color: black;
+    width: 100%;
+    color: var(--black);
     list-style: none;
     text-align: center;
     margin: .5rem;
+
 }
 
-.task_lnk {
-    font-size: 1rem;
-    color: var(--white);  
-    width: 8;      
+.task_status {
     border: none;
+    float: right;
     border-radius: .25rem;
+    margin: 0 2rem 0 0;
+    padding: .25rem .5rem .25rem .5rem;
+    width: 5rem;
+    max-width: 5rem;
+    color: var(--white);
     background-color: var(--secondary-trans);
     box-shadow: 0 0 5px 1px var(--black-trans);
 }
 
-.task_box {
+.task_lnk {
+    font-size: 1rem;
+
+}
+
+/* .task_box {
     margin: 0 .5rem 0 .5rem;
     box-shadow: 0 0 5px 1px var(--black-trans);    
 }
@@ -243,27 +253,101 @@ html {
     color: var(--secondary-trans);
     box-shadow: 0 0 5px 1px var(--black-trans);
     background-color: var(--secondary-trans);
-}
+} */
 
 
-/* ######################### MODIFICATION ######################### */
-
+/* ######################### MODIFICATION AND DELETE ICON ######################### */
 
 .button_container {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    background-color: var(--white);   
-    width: 4rem; 
-    top: 0;
-    left: .5rem;
+    display: none;
+    transition: opacity 0.3s ease-in-out;
+    position: absolute;
+    width: 5rem;
+    top: -1.5rem;
+    right: 1.5rem;
+    background-color: transparent;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #5FC2BA,
+        0 0 30px #5FC2BA, 0 0 40px #5FC2BA, 0 0 55px #5FC2BA, 0 0 75px #5FC2BA
+}
+
+.delete {
+    font-size: 1rem;
+    margin: .25rem;
+}
+
+.modify {
+    font-size: 1rem;
+    margin: .25rem;
+    cursor: pointer;
+}
+
+.reminder {
+    font-size: 1rem;
+    margin: .25rem;
+    cursor: pointer;
+}
+
+/* ######################### MODIFICATION INPUT ######################### */
+
+.modify_container {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    gap: .5rem;
+    top: -5.75rem;
+    width: 100%;
+    border-radius: .5rem;
     box-shadow: 0 0 5px 1px var(--black-trans);
+    background-color: var(--white);
+    padding: .5rem;
 }
 
-.modify_button {
-    font-size: 2rem;<
+.modify_submit_box {
+    width: 25%;
+    margin: auto;
 }
 
-.trash_button {
-    font-size: 2rem;
+.modify_submit {
+    cursor: pointer;
+    width: 25%;
+    margin: auto;
+    justify-self: center;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--primary);
+    border: .1px solid var(--black-trans);
+    border-radius: .25rem;
+    box-shadow: 0 0 8px 2px var(--black-trans);
+}
+
+/* ######################### REMINDER INPUT ######################### */
+.reminder_container {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    font-size: 1rem;
+    top: -5.75rem;
+    right: 0;
+    border-radius: .5rem;
+    box-shadow: 0 0 5px 1px var(--black-trans);
+    background-color: var(--white);
+    padding: .5rem;
+}
+
+
+.reminder_select {
+    font-size: 1rem;
+}
+
+.reminder_submit {    
+    cursor: pointer;
+    width: 25%;
+    margin: .25rem auto .25rem auto;
+    justify-self: center;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--primary);
+    border: .1px solid var(--black-trans);
+    border-radius: .25rem;
+    box-shadow: 0 0 8px 2px var(--black-trans);
 }
