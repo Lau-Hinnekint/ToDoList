@@ -48,7 +48,7 @@ require 'require/_bdd.php';
             <option class="orderby_txt" value="ID_status">Status</option>
             <option class="orderby_txt" value="task_creation_date">Date de création</option>
         </select>
-        <input class="orderby_submit" type="submit" value="Valider" name="requete">
+        <input class="orderby_submit" type="submit" value="Ok" name="requete">
     </form>
     <!-- ##################################################################################### -->
     
