@@ -2,19 +2,21 @@
 session_start();
 require 'require/_bdd.php';
 
-if (!array_key_exists('HTTP_REFERER', $_SERVER)
-    || str_contains($_SERVER['HTTP_REFERER'], 'http://localhost/todo.php/')) {
-        header('Location: index?php?msg=error_referer');
+// var_dump($_SESSION);
+// var_dump($_REQUEST);
+// exit;
+
+if (!array_key_exists('HTTP_REFERER', $_SERVER) || str_contains($_SERVER['HTTP_REFERER'], 'http://localhost/todo.php/')) {
+        header('Location: todo?php?msg=error_referer');
         exit;
     }
 
-else if (!array_key_exists('token', $_SESSION) || !array_key_exists('token', $_REQUEST)
-        || $_SESSION['token'] !== $_REQUEST['token']) {
-            header ('Location: index.php?msg= error_csrf');
+else if (!array_key_exists('token', $_SESSION) || !array_key_exists('token', $_REQUEST) || $_SESSION['token'] !== $_REQUEST['token']) {
+            header ('Location: todo.php?msg= error_csrf');
             exit;
-            }
+    }
 
-// var_dump($_REQUEST);
+
 // ######################### ADD TASK FUNCTION #########################
 if (isset($_REQUEST) && $_REQUEST['action'] === 'add') {
 $query = $dbCo->prepare("INSERT INTO task (task_creation_date, task_description, task_order, ID_status)
@@ -56,10 +58,23 @@ if (isset($_REQUEST) && $_REQUEST['action'] === 'edit') {
                             'id_task' => $_REQUEST['idt']]);
         header('Location: todo.php?msg=Ok');
     } else {
-        header('Location: todo.php?msg=NOk');
+        header('Location: todo.php?msg=NotOk');
     }
 exit;
 }
 #####################################################################
+
+
+// ######################### DELETE TASK #########################
+if (isset($_REQUEST) && $_REQUEST['action'] === 'delete') {
+
+    $query4 = $dbCo->prepare("DELETE FROM task WHERE id_task = :id_task");
+    $query4->execute(['id_task' => $_REQUEST['idt']]);
+        
+    header('Location: todo.php?msg=Ok');
+} else {
+    header('Location: todo.php?msg=NotOk');
+    exit;
+}
 
 ?>

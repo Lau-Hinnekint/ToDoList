@@ -8,9 +8,11 @@ require 'require/_bdd.php';
 session_start();
 $_SESSION['token'] = md5(uniqid(mt_rand(), true));
 // var_dump($_SESSION);
+
 ?>
 
 <body>
+
     <!-- ################################### ADD TASK ######################################## -->
     <form action="action.php" method="post" class="form_container">
         <label for="add_description">
@@ -18,13 +20,13 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
         </label>
         <div class="input_container">
             <input class="input_field" type="text" name="description" id="add_description">
-            <input class="input_submit" type="submit" name="submit">
+            <input class="input_submit" type="submit">
             <input type="hidden" name="action" value="add">
             <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
         </div>
         <?php
-        if (array_key_exists('msg', $_GET)) {
-            $message = $_GET['msg'];
+        if (array_key_exists('msg', $_REQUEST)) {
+            $message = $_REQUEST['msg'];
             if ($message == "Ok") {
                 echo "<section class='popin_Success_Add'>
                             <div class='popin_Success_Add_box'>
@@ -46,6 +48,7 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
     <!-- ##################################################################################### -->
 
 
+
     <!-- ################################### ORDER BY ######################################## -->
     <form class="orderby_container" method="post" action="action.php" id="orderBy">
         <label class="orderby_ttl" for="orderBy">Trier par : </label>
@@ -58,13 +61,14 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
     </form>
     <!-- ##################################################################################### -->
     
+
     
     <!-- ################################### CREATE TASK LIST ######################################## -->
     <?php
         $query = $dbCo->prepare("SELECT ID_task, task_creation_date, task_description, ID_status, status_name
                                 FROM task t
                                     JOIN status s USING (ID_status)
-                                    WHERE ID_status = 1
+                                WHERE ID_status = 1
                                 ORDER BY task_creation_date DESC");
         $query->execute();
         $result = $query->fetchAll();
@@ -76,20 +80,25 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
             // echo '<p class ="task_ttl">' . $task['task_name'] . '</p>';
             // echo '<li class="task_box"><input type="checkbox" id="checkBoxDelete"></li>';
             echo '<li class="task_list">' . $task['task_description'] . '</li>';
+
+
             // ################################### MODIFY STATUS ########################################
             echo '<li class="task_list"><div class="task_status">';
-            echo '<a href="action.php?action=modify&idt=' . $task["ID_task"] . '&ids=' . $task["ID_status"] . '"class="task_lnk">' . $task["status_name"] . '</a>';
+            echo '<a href="action.php?token=' . $_SESSION["token"] . '&action=modify&idt=' . $task["ID_task"] . '&ids=' . $task["ID_status"] . '"class="task_lnk">' . $task["status_name"] . '</a>';
             echo '</div></li>';
             // ###################################################################################
             
+
             // ################################### EDIT TASK ########################################        
             echo '  <form action="action.php?idt=' . $task["ID_task"] . '" method="post" class="modify_container">
             <input class="input_field" type="text" name="desc" id="modify_task" placeholder="Modifier le texte ici.">
             <input type="hidden" name="action" value="edit">
             <input class="modify_submit" type="submit">
+            <input type="hidden" name="token" value="' . $_SESSION["token"] . '">
             </form>';
             // ###################################################################################
             
+
             // ################################### REMINDER ######################################
             echo '<form action="action.php?idt=' . $task["ID_task"] . '" method="post" class="reminder_container">
             <input class="reminder_select" type="date" id="start" name="trip-start" value="" min="2023-06-01" max="2025-01-01">
@@ -97,14 +106,18 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
             </form>';
             // ###################################################################################
 
+
             echo '<div class="button_container">';
             echo '<i class="fa-solid fa-pen modify" style="color: #000000;"></i>';
             echo '<i class="fa-solid fa-bell reminder" style="color: #000000;"></i>';
 
+
             // ################################### DELETE ########################################
-            echo '  <a href="action.php?id=' . $task["ID_task"] . '" class="delete">
+            echo '  <a href="action.php?token=' . $_SESSION["token"] . '&action=delete&idt=' . $task["ID_task"] . '" class="delete">
             <i class="fa-solid fa-trash delete" style="color: #000000;"></i></a>';
             // ###################################################################################
+            
+            
             echo '</div>';
             echo '</div>';
         }
