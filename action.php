@@ -6,6 +6,8 @@ require 'require/_bdd.php';
 // var_dump($_REQUEST);
 // exit;
 
+
+// ################################# CSRF CHECK #################################
 if (!array_key_exists('HTTP_REFERER', $_SERVER) || str_contains($_SERVER['HTTP_REFERER'], 'http://localhost/todo.php/')) {
         header('Location: todo?php?msg=error_referer');
         exit;
@@ -15,9 +17,9 @@ else if (!array_key_exists('token', $_SESSION) || !array_key_exists('token', $_R
             header ('Location: todo.php?msg= error_csrf');
             exit;
     }
+// #############################################################################
 
-
-// ######################### ADD TASK FUNCTION #########################
+// ############################# ADD TASK FUNCTION #############################
 if (isset($_REQUEST) && $_REQUEST['action'] === 'add') {
 $query = $dbCo->prepare("INSERT INTO task (task_creation_date, task_description, task_order, ID_status)
                         VALUES (NOW(), :description, 1, 1)");
@@ -29,10 +31,10 @@ $isOk = $query->execute([
 header('location: todo.php?msg=' . ($isOk ? "Ok" : "NotOk"));
 exit;
 }
-// #####################################################################
+// ############################################################################
 
 
-// ######################### MODIFY STATUS FUNCTION #########################
+// ########################## MODIFY STATUS FUNCTION ##########################
 if (isset($_REQUEST) && $_REQUEST['action'] === 'modify') {
 
     $query2 = $dbCo->prepare("UPDATE task SET id_status = 2 WHERE id_task = :id_task");
@@ -45,10 +47,10 @@ if (isset($_REQUEST) && $_REQUEST['action'] === 'modify') {
     }
 exit;     
 }   
-// #####################################################################
+// ###########################################################################
 
 
-// ######################### EDIT TASK #########################
+// ################################ EDIT TASK ################################
 if (isset($_REQUEST) && $_REQUEST['action'] === 'edit') {
 
     $query3 = $dbCo->prepare("UPDATE task SET task_description = :desc WHERE id_task = :id_task");
@@ -62,10 +64,10 @@ if (isset($_REQUEST) && $_REQUEST['action'] === 'edit') {
     }
 exit;
 }
-#####################################################################
+// ###########################################################################
 
 
-// ######################### DELETE TASK #########################
+// ############################### DELETE TASK ###############################
 if (isset($_REQUEST) && $_REQUEST['action'] === 'delete') {
 
     $query4 = $dbCo->prepare("DELETE FROM task WHERE id_task = :id_task");
@@ -76,5 +78,21 @@ if (isset($_REQUEST) && $_REQUEST['action'] === 'delete') {
     header('Location: todo.php?msg=NotOk');
     exit;
 }
+// ###########################################################################
 
-?>
+
+// ################################ ORDER BY ################################
+if (isset($_REQUEST) && $_REQUEST['action'] === 'orderby') {
+
+    $query5 = $dbCo->prepare("  SELECT ID_task, task_creation_date, task_description, ID_status, status_name
+                                FROM task t
+                                    JOIN status s USING (ID_status)
+                                ORDER BY :orderby    ");
+    $result = $query5->execute(['orderby' => $_REQUEST['orderBySelect']]);
+        
+    header('Location: todo.php?msg=Ok');
+} else {
+    header('Location: todo.php?msg=NotOk');
+    exit;
+}
+// ###########################################################################

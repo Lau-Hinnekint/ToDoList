@@ -22,7 +22,7 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
             <input class="input_field" type="text" name="description" id="add_description">
             <input class="input_submit" type="submit">
             <input type="hidden" name="action" value="add">
-            <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
+            <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
         </div>
         <?php
         if (array_key_exists('msg', $_REQUEST)) {
@@ -50,78 +50,81 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
 
 
     <!-- ################################### ORDER BY ######################################## -->
-    <form class="orderby_container" method="post" action="action.php" id="orderBy">
+    <form class="orderby_container" method="post" action="action.php?action=orderby" id="orderBy">
         <label class="orderby_ttl" for="orderBy">Trier par : </label>
         <select class="orderBySelect" name="orderBySelect" id="orderBy">
             <option class="orderby_txt" value="" selected></option>
             <option class="orderby_txt" value="ID_status">Status</option>
+            <!-- <option class="orderby_txt" value="ID_status=1">A faire</option>
+            <option class="orderby_txt" value="ID_status=2">Terminer</option> -->
             <option class="orderby_txt" value="task_creation_date">Date de création</option>
         </select>
-        <input class="orderby_submit" type="submit" value="Ok" name="requete">
+        <input class="orderby_submit" type="submit">
+        <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
     </form>
     <!-- ##################################################################################### -->
-    
 
-    
+
+
     <!-- ################################### CREATE TASK LIST ######################################## -->
     <?php
-        $query = $dbCo->prepare("SELECT ID_task, task_creation_date, task_description, ID_status, status_name
+    $query = $dbCo->prepare("SELECT ID_task, task_creation_date, task_description, ID_status, status_name
                                 FROM task t
                                     JOIN status s USING (ID_status)
                                 WHERE ID_status = 1
                                 ORDER BY task_creation_date DESC");
-        $query->execute();
-        $result = $query->fetchAll();
-    
+    $query->execute();
+    $result = $query->fetchAll();
+
     echo '<ul class="task">';
-    
-        foreach ($result as $task) {
-            echo '<div class="task_container">';
-            // echo '<p class ="task_ttl">' . $task['task_name'] . '</p>';
-            // echo '<li class="task_box"><input type="checkbox" id="checkBoxDelete"></li>';
-            echo '<li class="task_list">' . $task['task_description'] . '</li>';
+
+    foreach ($result as $task) {
+        echo '<div class="task_container">';
+        // echo '<p class ="task_ttl">' . $task['task_name'] . '</p>';
+        // echo '<li class="task_box"><input type="checkbox" id="checkBoxDelete"></li>';
+        echo '<li class="task_list">' . $task['task_description'] . '</li>';
 
 
-            // ################################### MODIFY STATUS ########################################
-            echo '<li class="task_list"><div class="task_status">';
-            echo '<a href="action.php?token=' . $_SESSION["token"] . '&action=modify&idt=' . $task["ID_task"] . '&ids=' . $task["ID_status"] . '"class="task_lnk">' . $task["status_name"] . '</a>';
-            echo '</div></li>';
-            // ###################################################################################
-            
+        // ################################### MODIFY STATUS ########################################
+        echo '<li class="task_list"><div class="task_status">';
+        echo '<a href="action.php?token=' . $_SESSION["token"] . '&action=modify&idt=' . $task["ID_task"] . '&ids=' . $task["ID_status"] . '"class="task_lnk">' . $task["status_name"] . '</a>';
+        echo '</div></li>';
+        // ###################################################################################
 
-            // ################################### EDIT TASK ########################################        
-            echo '  <form action="action.php?idt=' . $task["ID_task"] . '" method="post" class="modify_container">
+
+        // ################################### EDIT TASK ########################################        
+        echo '  <form action="action.php?idt=' . $task["ID_task"] . '" method="post" class="modify_container">
             <input class="input_field" type="text" name="desc" id="modify_task" placeholder="Modifier le texte ici.">
             <input type="hidden" name="action" value="edit">
             <input class="modify_submit" type="submit">
             <input type="hidden" name="token" value="' . $_SESSION["token"] . '">
             </form>';
-            // ###################################################################################
-            
+        // ###################################################################################
 
-            // ################################### REMINDER ######################################
-            echo '<form action="action.php?idt=' . $task["ID_task"] . '" method="post" class="reminder_container">
+
+        // ################################### REMINDER ######################################
+        echo '<form action="action.php?idt=' . $task["ID_task"] . '" method="post" class="reminder_container">
             <input class="reminder_select" type="date" id="start" name="trip-start" value="" min="2023-06-01" max="2025-01-01">
             <input class="reminder_submit" type="submit" name="submit" value="Ok">
             </form>';
-            // ###################################################################################
+        // ###################################################################################
 
 
-            echo '<div class="button_container">';
-            echo '<i class="fa-solid fa-pen modify" style="color: #000000;"></i>';
-            echo '<i class="fa-solid fa-bell reminder" style="color: #000000;"></i>';
+        echo '<div class="button_container">';
+        echo '<i class="fa-solid fa-pen modify" style="color: #000000;"></i>';
+        echo '<i class="fa-solid fa-bell reminder" style="color: #000000;"></i>';
 
 
-            // ################################### DELETE ########################################
-            echo '  <a href="action.php?token=' . $_SESSION["token"] . '&action=delete&idt=' . $task["ID_task"] . '" class="delete">
+        // ################################### DELETE ########################################
+        echo '  <a href="action.php?token=' . $_SESSION["token"] . '&action=delete&idt=' . $task["ID_task"] . '" class="delete">
             <i class="fa-solid fa-trash delete" style="color: #000000;"></i></a>';
-            // ###################################################################################
-            
-            
-            echo '</div>';
-            echo '</div>';
-        }
-    
+        // ###################################################################################
+
+
+        echo '</div>';
+        echo '</div>';
+    }
+
     echo '</ul>';
     ?>
     <!-- ##################################################################################### -->
