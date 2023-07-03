@@ -4,6 +4,10 @@ $title = "²Do";
 include 'require/_html.php';
 include 'require/_header.php';
 require 'require/_bdd.php';
+
+session_start();
+$_SESSION['token'] = md5(uniqid(mt_rand(), true));
+// var_dump($_SESSION);
 ?>
 
 <body>
@@ -16,6 +20,7 @@ require 'require/_bdd.php';
             <input class="input_field" type="text" name="description" id="add_description">
             <input class="input_submit" type="submit" name="submit">
             <input type="hidden" name="action" value="add">
+            <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
         </div>
         <?php
         if (array_key_exists('msg', $_GET)) {
@@ -59,6 +64,7 @@ require 'require/_bdd.php';
         $query = $dbCo->prepare("SELECT ID_task, task_creation_date, task_description, ID_status, status_name
                                 FROM task t
                                     JOIN status s USING (ID_status)
+                                    WHERE ID_status = 1
                                 ORDER BY task_creation_date DESC");
         $query->execute();
         $result = $query->fetchAll();
@@ -76,10 +82,11 @@ require 'require/_bdd.php';
             echo '</div></li>';
             // ###################################################################################
             
-            // ################################### MODIFY ########################################        
+            // ################################### EDIT TASK ########################################        
             echo '  <form action="action.php?idt=' . $task["ID_task"] . '" method="post" class="modify_container">
-            <input class="input_field" type="text" name="modify" id="modify_task" placeholder="Modifier le texte ici.">
-            <input class="modify_submit" type="submit" name="submit">
+            <input class="input_field" type="text" name="desc" id="modify_task" placeholder="Modifier le texte ici.">
+            <input type="hidden" name="action" value="edit">
+            <input class="modify_submit" type="submit">
             </form>';
             // ###################################################################################
             
