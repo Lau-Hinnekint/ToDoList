@@ -8,13 +8,14 @@ require 'require/_bdd.php';
 
 <body>
     <!-- ################################### ADD TASK ######################################## -->
-    <form action="add.php" method="post" class="form_container">
+    <form action="action.php" method="post" class="form_container">
         <label for="add_description">
             <h2 class="form_title">Quelle tâche souhaitez-vous ajouter ?</h2>
         </label>
         <div class="input_container">
             <input class="input_field" type="text" name="description" id="add_description">
             <input class="input_submit" type="submit" name="submit">
+            <input type="hidden" name="action" value="add">
         </div>
         <?php
         if (array_key_exists('msg', $_GET)) {
@@ -69,10 +70,11 @@ require 'require/_bdd.php';
             // echo '<p class ="task_ttl">' . $task['task_name'] . '</p>';
             // echo '<li class="task_box"><input type="checkbox" id="checkBoxDelete"></li>';
             echo '<li class="task_list">' . $task['task_description'] . '</li>';
-            echo '  <li class="task_list"><div class="task_status">
-            <a href="action.php?idt=' . $task["ID_task"] . '&ids=' . $task["ID_status"] . '" class="task_lnk">' . $task['status_name'] . '</a>
-            </div></li>';
-            
+            // ################################### MODIFY STATUS ########################################
+            echo '<li class="task_list"><div class="task_status">';
+            echo '<a href="action.php?action=modify&idt=' . $task["ID_task"] . '&ids=' . $task["ID_status"] . '"class="task_lnk">' . $task["status_name"] . '</a>';
+            echo '</div></li>';
+            // ###################################################################################
             
             // ################################### MODIFY ########################################        
             echo '  <form action="action.php?idt=' . $task["ID_task"] . '" method="post" class="modify_container">
