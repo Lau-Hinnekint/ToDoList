@@ -82,17 +82,20 @@ if (isset($_REQUEST) && $_REQUEST['action'] === 'delete') {
 
 
 // ################################ ORDER BY ################################
-if (isset($_REQUEST) && $_REQUEST['action'] === 'orderby') {
+// if (isset($_REQUEST) && $_REQUEST['action'] === 'orderby') {
 
-    $query5 = $dbCo->prepare("  SELECT ID_task, task_creation_date, task_description, ID_status, status_name
-                                FROM task t
-                                    JOIN status s USING (ID_status)
-                                ORDER BY :orderby    ");
-    $result = $query5->execute(['orderby' => $_REQUEST['orderBySelect']]);
+//     $query5 = $dbCo->prepare("  SELECT ID_task, task_creation_date, task_description, ID_status, status_name
+//                                 FROM task t
+//                                     JOIN status s USING (ID_status)
+//                                 ORDER BY :orderby    ");
+
+//     $result5 = $query5->execute(['orderby' => $_REQUEST['orderBySelect']]);
+//     $result5 = $query5->fetchAll();
         
-    header('Location: todo.php?msg=Ok');
-} else {
-    header('Location: todo.php?msg=NotOk');
-    exit;
-}
+//     header('Location: todo.php?msg=Ok');
+// } else {
+//     header('Location: todo.php?msg=NotOk');
+//     exit;
+// }
+
 // ###########################################################################

@@ -2,8 +2,8 @@
 
 const closeButtons = document.querySelectorAll('.closePopIn');
 
-closeButtons.forEach(function(closeButton) {
-  closeButton.addEventListener('click', function() {
+closeButtons.forEach(function (closeButton) {
+  closeButton.addEventListener('click', function () {
     const popin = closeButton.closest('section');
     if (popin) {
       popin.style.display = 'none';
@@ -43,20 +43,20 @@ taskContainers.forEach(function (container) {
 
 
 
-// ########################### TOGGLE MODIFY INPUT ###########################
+// ########################### TOGGLE EDIT INPUT ###########################
 
-const modifyIcons = document.querySelectorAll('.modify');
+const editIcons = document.querySelectorAll('.edit');
 
 
-modifyIcons.forEach(function (modifyIcon) {
-  const taskContainer = modifyIcon.closest('.task_container');
-  const modifyContainer = taskContainer.querySelector('.modify_container');
+editIcons.forEach(function (editIcon) {
+  const taskContainer = editIcon.closest('.task_container');
+  const editContainer = taskContainer.querySelector('.edit_container');
 
-  modifyIcon.addEventListener('click', function () {
-    if (modifyContainer.style.display === 'flex') {
-      modifyContainer.style.display = 'none';
+  editIcon.addEventListener('click', function () {
+    if (editContainer.style.display === 'flex') {
+      editContainer.style.display = 'none';
     } else {
-      modifyContainer.style.display = 'flex';
+      editContainer.style.display = 'flex';
     }
   });
 });
@@ -64,7 +64,6 @@ modifyIcons.forEach(function (modifyIcon) {
 // ########################### TOGGLE CALENDAR INPUT ###########################
 
 const reminderIcons = document.querySelectorAll('.reminder');
-console.log(reminderIcons);
 
 reminderIcons.forEach(function (reminderIcon) {
   const taskContainer = reminderIcon.closest('.task_container');
@@ -78,3 +77,60 @@ reminderIcons.forEach(function (reminderIcon) {
     }
   });
 });
+
+
+
+
+// ########################### ASYNCH ###########################
+
+function getCsrfToken() {
+  return document.querySelector('#token-csrf').value;
+}
+
+
+function editTask(idTask, desc) {
+  const data = {
+    action: 'edit',
+    idTask: idTask,
+    token: getCsrfToken(),
+    desc: desc
+  };
+  return callAPI('PUT', data)
+}
+
+async function callAPI(method, data) {
+  try {
+    const response = await fetch("api.php", {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    return response.json();
+  }
+  catch (error) {
+    console.error("Unable to load datas from the server : " + error);
+  }
+}
+
+
+
+// ########################### ASYNCH EDIT  ###########################
+const submitEdit = document.querySelectorAll('.edit_container');
+
+
+submitEdit.forEach((form) => {
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    console.log(e.target.dataset.id)
+    const editValue = e.target.querySelector('.input_field').value;
+    editTask(e.target.dataset.id, editValue).then(apiResponse => {
+        if (!apiResponse.result) {
+          console.error('Problème avec la requête.');
+          return;
+        };
+      });
+  })
+})
+

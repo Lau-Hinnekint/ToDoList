@@ -278,7 +278,7 @@ html {
     margin: .25rem;
 }
 
-.modify {
+.edit {
     font-size: 1rem;
     margin: .25rem;
     cursor: pointer;
@@ -292,7 +292,7 @@ html {
 
 /* ######################### MODIFICATION INPUT ######################### */
 
-.modify_container {
+.edit_container {
     position: absolute;
     display: none;
     flex-direction: column;
@@ -305,12 +305,12 @@ html {
     padding: .5rem;
 }
 
-.modify_submit_box {
+.edit_submit_box {
     width: 25%;
     margin: auto;
 }
 
-.modify_submit {
+.edit_submit {
     cursor: pointer;
     width: 25%;
     margin: auto;
