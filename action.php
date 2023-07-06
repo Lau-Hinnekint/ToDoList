@@ -51,19 +51,19 @@ exit;
 
 
 // ################################ EDIT TASK ################################
-if (isset($_REQUEST) && $_REQUEST['action'] === 'edit') {
+// if (isset($_REQUEST) && $_REQUEST['action'] === 'edit') {
 
-    $query3 = $dbCo->prepare("UPDATE task SET task_description = :desc WHERE id_task = :id_task");
+//     $query3 = $dbCo->prepare("UPDATE task SET task_description = :desc WHERE id_task = :id_task");
     
-    if (isset($_REQUEST['desc'])) {
-        $query3->execute([  'desc' => $_REQUEST['desc'],
-                            'id_task' => $_REQUEST['idt']]);
-        header('Location: todo.php?msg=Ok');
-    } else {
-        header('Location: todo.php?msg=NotOk');
-    }
-exit;
-}
+//     if (isset($_REQUEST['desc'])) {
+//         $query3->execute([  'desc' => $_REQUEST['desc'],
+//                             'id_task' => $_REQUEST['idt']]);
+//         header('Location: todo.php?msg=Ok');
+//     } else {
+//         header('Location: todo.php?msg=NotOk');
+//     }
+// exit;
+// }
 // ###########################################################################
 
 

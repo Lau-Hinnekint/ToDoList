@@ -85,7 +85,7 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
         echo '<div class="task_container">';
         // echo '<p class ="task_ttl">' . $task['task_name'] . '</p>';
         // echo '<li class="task_box"><input type="checkbox" id="checkBoxDelete"></li>';
-        echo '<li class="task_list">' . $task['task_description'] . '</li>';
+        echo '<li class="task_list" data-desc-id="' . $task['ID_task'] . '"">' . $task['task_description'] . '</li>';
 
 
         // ################################### MODIFY STATUS ########################################
@@ -97,7 +97,7 @@ $_SESSION['token'] = md5(uniqid(mt_rand(), true));
 
         // ################################### EDIT TASK ########################################        
         echo '  <form action="" method="post" class="edit_container" data-id="'. $task["ID_task"] .'">
-            <input class="input_field" type="text" name="desc" value=""placeholder="Modifier le texte ici.">
+            <input class="input_field" type="text" name="desc" value="" placeholder="Modifier le texte ici.">
             <input type="hidden" name="idt" value="'. $task["ID_task"] .'">
             <input type="hidden" name="action" value="edit">
             <input type="hidden" name= "token" id="token-csrf" value="' . $_SESSION["token"] . '">

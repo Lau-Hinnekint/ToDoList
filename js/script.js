@@ -87,10 +87,13 @@ function getCsrfToken() {
   return document.querySelector('#token-csrf').value;
 }
 
+function doEditTask(idTask, desc) {
+  document.querySelector(`[data-desc-id="${idTask}"]`).innerText = desc;
+}
 
 function editTask(idTask, desc) {
   const data = {
-    action: 'edit',
+    action: "edit",
     idTask: idTask,
     token: getCsrfToken(),
     desc: desc
@@ -107,6 +110,7 @@ async function callAPI(method, data) {
       },
       body: JSON.stringify(data)
     });
+
     return response.json();
   }
   catch (error) {
@@ -123,14 +127,17 @@ const submitEdit = document.querySelectorAll('.edit_container');
 submitEdit.forEach((form) => {
   form.addEventListener('submit', e => {
     e.preventDefault()
-    console.log(e.target.dataset.id)
     const editValue = e.target.querySelector('.input_field').value;
     editTask(e.target.dataset.id, editValue).then(apiResponse => {
-        if (!apiResponse.result) {
-          console.error('Problème avec la requête.');
-          return;
-        };
-      });
+      if (apiResponse.result) {
+        doEditTask(apiResponse.idTask, apiResponse.desc);
+        e.target.closest('form').style.display = 'none';
+      }
+      else {
+        console.error('Problème avec la requête.');
+        return;
+      };      
+    });
   })
 })
 
